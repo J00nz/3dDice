@@ -1,0 +1,41 @@
+body {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    perspective: 1000px;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.cube div {
+    margin: 0;
+    width: 196px;
+    height: 196px;
+    display: block;
+    position: absolute;
+    border: 2px solid black;
+    background-color: rgba(150, 50, 50, 0.8);
+    color: black;
+    font-size: 165px;
+    text-align: center;
+    
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+    /* Rules below not implemented in browsers yet */
+    -o-user-select: none;
+    user-select: none;
+}
+
+.cube .front  { transform: rotateY(   0deg ) translateZ( 100px ); }
+.cube .back   { transform: rotateX( 180deg ) translateZ( 100px ); }
+.cube .right  { transform: rotateY(  90deg ) translateZ( 100px ); }
+.cube .left   { transform: rotateY( -90deg ) translateZ( 100px ); }
+.cube .top    { transform: rotateX(  90deg ) translateZ( 100px ); }
+.cube .bottom { transform: rotateX( -90deg ) translateZ( 100px ); }
