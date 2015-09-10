@@ -11,11 +11,11 @@
         <div class="holder">
             <div class="cube">
                 <div class="front">1</div>
-                <div class="back">2</div>
-                <div class="right">3</div>
-                <div class="left">4</div>
+                <div class="back">6</div>
+                <div class="right">4</div>
+                <div class="left">3</div>
                 <div class="top">5</div>
-                <div class="bottom">6</div>
+                <div class="bottom">2</div>
             </div>
         </div>
         
@@ -38,25 +38,35 @@
                 }
             }
             
+            var transRot = {1:[0,0], 2:[1,0], 3:[0,1], 4:[0, -1], 5:[-1,0], 6:[2, 0]};
+            
             var timeRun = 0;
             var defaultAnimationStuff = '-webkit-animation-duration: 5s; -webkit-animation-iteration-count: 1; -webkit-animation-fill-mode: forwards; -webkit-animation-timing-function: ease-in-out;';
             
-            function getNextRandomSpinn(){
-                return (Math.round(Math.random() * 120) - 60) * 90;
+            function getSpin(rot){
+                return rot + ((Math.round(Math.random() * 50) - 25) * 360);
             }
             
-            var currentState = [];
+            function getRot(num){
+                var rot = transRot[num];
+                return [rot[0] * 90, rot[1] * 90];
+            }
+            
+            var currentState = [0,0];
             cube.addEventListener('click', function(){
                 var cssStr = [];
                 
-                var nextX = getNextRandomSpinn();
-                var nextY = getNextRandomSpinn();
-                cssStr.push('@-webkit-keyframes diceAnimation' + timeRun + ' { 0% { -webkit-transform: rotateX(' + currentState[0] + 'deg) rotateY(' + currentState[1] + 'deg); } 100% { -webkit-transform: rotateX(' + nextX + 'deg) rotateY(' + nextY + 'deg); }}');            
+                var num = 1 + Math.round(Math.random() * 5);
+                
+                console.log('generated number: ' + num);
+                
+                var next = getRot(num);
+                cssStr.push('@-webkit-keyframes diceAnimation' + timeRun + ' { 0% { -webkit-transform: rotateX(' + currentState[0] + 'deg) rotateY(' + currentState[1] + 'deg); } 100% { -webkit-transform: rotateX(' + getSpin(next[0]) + 'deg) rotateY(' + getSpin(next[1]) + 'deg); }}');            
                 
                 
-                cube.setAttribute('style', '-webkit-transform: rotateX(' + currentState[0] + 'deg); rotateY(' + currentState[1] + 'deg);'); 
-                currentState[0] = nextX;
-                currentState[1] = nextY;
+                cube.setAttribute('style', '-webkit-transform: rotateX(' + currentState[0] + 'deg); rotateY(' + currentState[1] + 'deg);');
+                
+                currentState = next;
                                   
                                   
                 updateDynamicCss(cssStr.join(''));
