@@ -1,3 +1,12 @@
+html {
+    width: 100vw;
+    height: 100vh;
+    background: -webkit-radial-gradient(#666666, #000000); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#666666, #000000); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#666666, #000000); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#666666, #000000); /* Standard syntax (must be last) */
+}
+
 .holder {
     top: 50vh;
     margin-top: -100px;
@@ -30,6 +39,7 @@
     color: white;
     font-size: 165px;
     text-align: center;
+    border: 1px solid rgb(200, 100, 100);
     
     -webkit-user-select: none; /* Chrome/Safari */        
     -moz-user-select: none; /* Firefox */
